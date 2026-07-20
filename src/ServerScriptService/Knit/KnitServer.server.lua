@@ -17,7 +17,7 @@ local Knit = require(game:GetService("ReplicatedStorage").Knit)
 
 -- Load all services by requiring their modules
 -- Services self-register with Knit via Knit.CreateService()
-local servicesFolder = script.Parent.Services
+local servicesFolder = script.Parent.Parent.Services
 
 for _, module in ipairs(servicesFolder:GetChildren()) do
 	if module:IsA("ModuleScript") then
