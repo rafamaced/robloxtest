@@ -17,7 +17,10 @@
       }
     },
     "ReplicatedStorage": {
-      "$path": "src/ReplicatedStorage"
+      "$path": "src/ReplicatedStorage",
+      "Packages": {
+        "$path": "Packages"
+      }
     },
     "StarterGui": {
       "$path": "src/StarterGui"
