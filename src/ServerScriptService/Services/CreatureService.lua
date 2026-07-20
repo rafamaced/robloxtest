@@ -631,6 +631,18 @@ function CreatureService.Client:ReportStruggleResult(player: Player, resultData:
             struggleDuration
         ))
 
+        -- === LEADERBOARD INTEGRATION (GDD 9.3) ===
+        local LeaderboardService = Knit.GetService("LeaderboardService")
+        if LeaderboardService then
+            -- Record catch for server-wide records (largest fish, rarest today)
+            LeaderboardService:RecordCatch(player.UserId, creatureData)
+
+            -- Update Total Coins leaderboard with new balance
+            local data = PlayerDataService and PlayerDataService:GetPlayerData(player)
+            local totalCoins = (data and data.coins) or 0
+            LeaderboardService:UpdateCoinLeaderboard(player.UserId, totalCoins)
+        end
+
         -- Broadcast rare catches for crew celebration (GDD Section 9.2)
         if creatureData.rarity == "Legendary" or creatureData.rarity == "Mythic" then
             local RemoteEvents = require(ReplicatedStorage.Remote.RemoteEvents)
