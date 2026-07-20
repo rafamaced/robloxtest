@@ -428,10 +428,19 @@ function CreatureService.Client:RequestCast(player: Player, castData: table): ta
         end
     end
 
-    -- Validate zone
+    -- Validate zone exists
     local zoneDef = ZoneData:GetZone(zoneId)
     if not zoneDef or zoneDef.isHub then
         return { success = false, reason = "invalid_zone" }
+    end
+
+    -- Validate player can access this zone (depth gating, gear check)
+    local ZoneService = Knit.GetService("ZoneService")
+    if ZoneService then
+        local canEnter, zoneReason = ZoneService:CanPlayerEnterZone(player, zoneId)
+        if not canEnter then
+            return { success = false, reason = "zone_locked", message = zoneReason }
+        end
     end
 
     -- Check there are creatures in this zone
