@@ -1,4 +1,4 @@
 -- Workspace directory placeholder.
--- Zones are built at runtime by ZoneService.
--- Static workspace objects (hub buildings, etc.) can be placed here.
+-- Zones are built at runtime by MapBuilder (ServerScriptService.Services.MapBuilder).
+-- Static workspace objects can also be placed here if needed.
 return {}
