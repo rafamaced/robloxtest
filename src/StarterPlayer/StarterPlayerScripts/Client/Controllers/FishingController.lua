@@ -1096,10 +1096,10 @@ end
 function FishingController:KnitStart(): nil
         print("[FishingController] Started — ready to fish!")
 
-        -- Fetch unlocked zones from PlayerDataService
-        local PlayerDataService = Knit.GetService("PlayerDataService")
-        if PlayerDataService and PlayerDataService.GetUnlockedZones then
-            local result = PlayerDataService:GetUnlockedZones():await()
+        -- Fetch unlocked zones from ZoneService (depth gating + gear checks)
+        local ZoneService = Knit.GetService("ZoneService")
+        if ZoneService and ZoneService.GetUnlockedZones then
+            local result = ZoneService:GetUnlockedZones():await()
             if result and #result > 0 then
                 unlockedZones = result
                 print("[FishingController] Unlocked zones:", table.concat(unlockedZones, ", "))
