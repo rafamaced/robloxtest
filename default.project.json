@@ -17,9 +17,14 @@
       }
     },
     "ReplicatedStorage": {
-      "$path": "src/ReplicatedStorage",
-      "Packages": {
-        "$path": "Packages"
+      "Shared": {
+        "$path": "src/ReplicatedStorage/Shared"
+      },
+      "Remote": {
+        "$path": "src/ReplicatedStorage/Remote"
+      },
+      "Knit": {
+        "$path": "Packages/Knit/src"
       }
     },
     "StarterGui": {
