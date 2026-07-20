@@ -1,0 +1,15 @@
+{
+  "luau-lsp.require.mode": "relativeToFile",
+  "luau-lsp.require.directoryAliases": {
+    "@shared": "src/ReplicatedStorage/Shared",
+    "@server": "src/ServerScriptService",
+    "@client": "src/StarterPlayer/StarterPlayerScripts/Client",
+    "@knit": "src/ReplicatedStorage/Knit"
+  },
+  "luau-lsp.types.definitionFiles": [
+    "src/ReplicatedStorage/Knit"
+  ],
+  "files.exclude": {
+    "Packages": true
+  }
+}

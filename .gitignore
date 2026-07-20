@@ -1,0 +1,33 @@
+# Rojo build artifacts
+build/
+out/
+.rbxl
+.rbxlx
+
+# Wally
+Packages/
+wally.lock
+*.wally
+
+# Roblox Studio temp files
+*.autosave
+*.backup
+
+# OS garbage
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (if any tooling uses it)
+node_modules/
+
+# Luau LSP
+.luau-*
+
+# Local config overrides (not committed)
+rojo-config.local.json
