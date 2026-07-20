@@ -263,7 +263,8 @@ function MapBuilder:BuildPortAzure(): nil
 	water.Parent = folder
 
 	-- === SPAWN POINTS ===
-	-- Mark spawn areas with subtle markers (invisible anchored parts)
+	-- Proper Roblox SpawnLocation objects so the spawn system works.
+	-- Without these, players fall into the void while the dock builds.
 	local spawnLocations = {
 		Vector3.new(cx, stallY + 0.5, cz - 15),
 		Vector3.new(cx + 15, stallY + 0.5, cz),
@@ -271,10 +272,16 @@ function MapBuilder:BuildPortAzure(): nil
 		Vector3.new(cx, stallY + 0.5, cz + 15),
 	}
 	for i, pos in ipairs(spawnLocations) do
-		local spawn = Part("SpawnPoint_" .. i, Vector3.new(4, 0.1, 4), pos,
-			Color3.fromHex(P.PortAzure.Sky), PLASTIC, 0.8)
-		spawn.CanCollide = false
-		spawn.Parent = folder
+		local spawnLocation = Instance.new("SpawnLocation")
+		spawnLocation.Name = "SpawnLocation_" .. i
+		spawnLocation.Size = Vector3.new(4, 0.5, 4)
+		spawnLocation.Position = pos
+		spawnLocation.Anchored = true
+		spawnLocation.Color = Color3.fromRGB(180, 180, 180) -- neutral gray
+		spawnLocation.Material = Enum.Material.SmoothPlastic
+		spawnLocation.Transparency = 0.7 -- subtle, not distracting
+		spawnLocation.Duration = 0 -- use immediately, don't cycle
+		spawnLocation.Parent = folder
 	end
 
 	print(string.format("[MapBuilder] Port Azure built — %d parts", #folder:GetChildren()))
